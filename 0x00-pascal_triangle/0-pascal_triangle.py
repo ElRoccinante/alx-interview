@@ -6,22 +6,22 @@ pascal
 
 def pascal_triangle(n):
     """
-    function
+    fun
     """
     if n <= 0:
         return []
 
-    x = []
-    y = []
+    jd = []
+    pv = []
 
     for i in range(n):
-        y = []
+        prp = []
         for j in range(i+1):
             if j == 0 or i == j:
-                y.append(1)
+                prp.append(1)
             else:
-                y = x[i-1]
-                x.append(pvs[j-1]+pvs[j])
-        x.append(prp)
+                pv = jd[i-1]
+                prp.append(pv[j-1]+pv[j])
+        jd.append(prp)
 
-    return x
+    return jd
