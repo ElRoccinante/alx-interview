@@ -1,27 +1,18 @@
 #!/usr/bin/python3
-"""LOCKED"""
+"""
+0x01. Lockboxes
+"""
+
 
 def canUnlockAll(boxes):
-    """
-    Check if it's possible to unlock all the boxes based on a set of keys.
+    """A function that determines if all the boxes can be opened."""
+    unlocked_boxes = {0}  # Start with box 0 unlocked
+    prev_count = 0
 
-    Parameters:
-    - boxes (List[List[int]]): A list of lists.
+    while len(unlocked_boxes) > prev_count:
+        prev_count = len(unlocked_boxes)
 
-    Returns:
-    - bool: True if all boxes can be unlocked, False otherwise.
-    """
-    total_boxes = len(boxes)
-    keys = [0]
-    count = 0
-    queue = 0
+        for box in unlocked_boxes.copy():
+            unlocked_boxes.update(boxes[box])
 
-    while queue < len(keys):
-        setkey = keys[queue]
-        for key in boxes[setkey]:
-            if 0 < key < total_boxes and key not in keys:
-                keys.append(key)
-                count += 1
-        queue += 1
-
-    return count == total_boxes - 1
+    return len(unlocked_boxes) == len(boxes)
