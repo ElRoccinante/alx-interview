@@ -1,17 +1,27 @@
 #!/usr/bin/python3
-"""unlock list of lists"""
-
+"""LOCKED"""
 
 def canUnlockAll(boxes):
-    """This function will take a list of lists and the content
-       of a list will unlock other lists
     """
+    Check if it's possible to unlock all the boxes based on a set of keys.
 
+    Parameters:
+    - boxes (List[List[int]]): A list of lists.
+
+    Returns:
+    - bool: True if all boxes can be unlocked, False otherwise.
+    """
+    total_boxes = len(boxes)
     keys = [0]
-    for key in keys:
-        for boxKey in boxes[key]:
-            if boxKey not in keys and boxKey < len(boxes):
-                keys.append(boxKey)
-    if len(keys) == len(boxes):
-        return True
-    return False
+    count = 0
+    queue = 0
+
+    while queue < len(keys):
+        setkey = keys[queue]
+        for key in boxes[setkey]:
+            if 0 < key < total_boxes and key not in keys:
+                keys.append(key)
+                count += 1
+        queue += 1
+
+    return count == total_boxes - 1
